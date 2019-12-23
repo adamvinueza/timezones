@@ -47,7 +47,7 @@ git clone https://github.com/adamvinueza/workshop/timezones.git
 Then you can do this:
 ```
 cd ~/git/timezones
-node server.js
+npm install && node server.js
 ```
 That should start the application. Open a browser, then enter this URL:
 ```
