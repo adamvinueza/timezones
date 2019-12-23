@@ -94,6 +94,15 @@ PARAMETERS:
   TZ_NAME        A valid TZ database name
 ```
 
+The application source code contain `localTime` and `convertTime` directories,
+whose files (incorrectly) handle the routes documented above. You should write
+tests that express the use cases described in the documentation above. Write
+each test _first_; it will of course fail given the function as written.
+
+Pay attention to how the files in `localTime` are organized and consider why
+they have been written in that way. Contrast them to the file in `convertTime`.
+Is it easier or harder to write tests for one or the other case? Why?
+
 ## TDD guidelines
 
 This pattern goes as follows:
