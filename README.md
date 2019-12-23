@@ -61,7 +61,7 @@ If you see that, congratulations! Your application works.
 
 # The task
 
-The timezones application should expose the following two REST endpoints:
+The timezones application exposes the following two REST endpoints:
 ```
 ===============
 GET /local-time
@@ -94,9 +94,10 @@ PARAMETERS:
   TZ_NAME        A valid TZ database name
 ```
 
-The application source code contain `localTime` and `convertTime` directories,
+The application source code contains `localTime` and `convertTime` directories,
 whose files (incorrectly) handle the routes documented above. You should write
-tests that express the use cases described in the documentation above. Write
+tests that express the use cases described in the documentation above, then follow the RGR procedure to get the tests to pass and clean up your code.
+Write
 each test _first_; it will of course fail given the function as written.
 
 Pay attention to how the files in `localTime` are organized and consider why
