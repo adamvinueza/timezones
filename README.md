@@ -38,11 +38,11 @@ mkdir ~/git
 Navigate to the directory where you'll be installing the repository and clone it. If you're using an SSH key
 ([YOU SHOULD USE AN SSH KEY](https://help.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh)), do this:
 ```
-git clone git@github.com:adamvinueza/workshop/timezones.git
+git clone git@github.com:adamvinueza/timezones.git
 ```
 Using HTTPS, do this:
 ```
-git clone https://github.com/adamvinueza/workshop/timezones.git
+git clone https://github.com/adamvinueza/timezones.git
 ```
 Then you can do this:
 ```
