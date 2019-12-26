@@ -44,7 +44,7 @@ Using HTTPS, do this:
 ```
 git clone https://github.com/adamvinueza/timezones.git
 ```
-Then you can do this:
+(If you prefer, [fork](https://guides.github.com/activities/forking/) this repository first.) Then you can do this:
 ```
 cd ~/git/timezones
 npm install && node server.js
