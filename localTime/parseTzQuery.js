@@ -1,6 +1,6 @@
 // Parses the request's query string and extracts the TZ name.
 const parseTzQuery = req => {
-  return "America/Los Angeles";
+  return req.query.tz;
 };
 
 module.exports = parseTzQuery;

@@ -4,9 +4,10 @@ const localTime = require('./localTime');
 const parseTzQuery = require('./parseTzQuery');
 
 // Handles calls to get the local time.
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
   const tz = parseTzQuery(req);
-  res.send(localTime(tz))
+  const local = await localTime(tz);
+  res.send(local);
 });
 
 module.exports = router;

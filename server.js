@@ -4,7 +4,7 @@ const convertTime = require('./convertTime/converter');
 const app = express();
 const PORT = 3000;
 
-app.get('/', (req, res) => {
+app.get('/', async (req, res) => {
   res.send('Hello, World!');
 });
 
@@ -14,3 +14,5 @@ app.use('/convert-time', convertTime);
 const server = app.listen(PORT, () => {
   console.log(`Listening at http://localhost:${PORT}`);
 });
+
+module.exports = server;
