@@ -39,7 +39,7 @@ Navigate to the directory where you'll be installing the repository and
 [fork](https://guides.github.com/activities/forking/) it. Then you can do this:
 ```
 cd ~/git/timezones
-npm install && node server.js
+npm install && npm start
 ```
 That should start the application. Open a browser, then enter this URL:
 ```
