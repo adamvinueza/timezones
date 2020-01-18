@@ -70,11 +70,11 @@ GET /local-time
 http://localhost:3000/local-time?tz=TZ_NAME
 
   Gets the current time localized to the specified time zone, as an ISO-8601
-  formatted string. The time zone name must be a valid [TZ database
-  name](https://www.iana.org/time-zones).  If none is provided, the time
-  returned is localized to Universal Time Coordinated (UTC). If an invalid time
-  zone is provided, the string returned should be "Invalid time zone: " followed
-  by the time zone provided.
+  formatted string. The time zone name must be a valid TZ database name, as
+  defined by IANA (https://www.iana.org/time-zones).  If none is provided, the
+  time returned is localized to Universal Time Coordinated (UTC). If an invalid
+  time zone is provided, the string returned should be "Invalid time zone: "
+  followed by the time zone provided.
 
 PARAMETERS:
 
@@ -88,11 +88,11 @@ http://localhost:3000/convert-time?time=ISO_8601_TIME&tz=TZ_NAME
 
   Gets the specified ISO 8601 formatted datetime string and returns an ISO- 8601
   formatted string representing that time in the specified time zone.  The time
-  zone name must be a valid [TZ database name](https://www.iana.org/time-zones).
-  If no time is provided, the current time is used. If no time zone name is
-  provided, the time returned is localized to UTC. If an invalid time zone is
-  provided, the string returned should be "Invalid time zone: " followed by the
-  time zone provided.
+  zone name must be a valid TZ database name, as defined by IANA
+  (https://www.iana.org/time-zones).  If no time is provided, the current time
+  is used. If no time zone name is provided, the time returned is localized to
+  UTC. If an invalid time zone is provided, the string returned should be
+  "Invalid time zone: " followed by the time zone provided.
 
 PARAMETERS:
 
