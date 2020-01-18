@@ -50,7 +50,7 @@ describe(`GET ${endpoint}`, () => {
       });
   });
 
-  it('Should return an error message for an invalid time zone', done => {
+  it('Should return an error message for an invalid time zone name', done => {
     const badTimezone = 'foo';
     const expected = validator.getErrorMessage(badTimezone);
     chai.request(server)
