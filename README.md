@@ -18,7 +18,12 @@ packages that enable your application to run.
 
 ## Quick start
 
-Install Node. If you're using OS X, you might as well get started using Homebrew
+Install Docker: [create a Docker account](https://hub.docker.com/signup) then
+follow the instructions to install Docker.
+
+Install Node. (Strictly speaking, Node isn't necessary for this exercise, but
+you'll want to be able to develop Node applications outside of Docker
+containers.) If you're using OS X, you might as well get started using Homebrew
 if you haven't already:
 ```
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -39,7 +44,7 @@ Navigate to the directory where you'll be installing the repository and
 [fork](https://guides.github.com/activities/forking/) it. Then you can do this:
 ```
 cd ~/git/timezones
-npm install && npm start
+docker-compose up -d
 ```
 That should start the application. Open a browser, then enter this URL:
 ```
@@ -49,8 +54,11 @@ You should see this:
 ```
 Hello, World!
 ```
-If you see that, congratulations! Your application works.
-
+If you see that, congratulations! Your application works. Run this command to
+stop the application (from the application directory):
+```
+docker-compose down
+```
 # The task
 
 The timezones application exposes the following two REST endpoints:
