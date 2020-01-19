@@ -168,7 +168,7 @@ whose files handle the routes documented above.
 
 The `/local-time` endpoint is handled correctly, except for one failing test.
 You should verify that the test is written correctly. If it is, fix the code;
-if it isn't, fix thetest.
+if it isn't, fix the test.
 
 Next, examine the files in the `localTime` directory, and the tests in the
 `test` directory, as a guide to fixing the code in the `convertTime` directory.
