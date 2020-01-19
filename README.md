@@ -272,3 +272,21 @@ works as it should when run in the Docker container**. So it's usually worth
 waiting an extra few seconds per iteration to wait for the Docker container to
 spin up, especially now that you know how to mount your application directory
 directly inside it.
+
+So you will definitely need to be able to rebuild the Docker container at some
+point. Is there a way that's easier than finding the built container, deleting
+it, then re-running the test script? As it happens, there is, by changing the
+test script. Copy the test script to one with a different name:
+```
+cp run_tests.sh run_tests_iter.sh
+```
+Then edit `run_tests_iter.sh` by replacing this command:
+```
+docker-compose -f docker-compose.test.yml up
+```
+with this one:
+```
+docker-compose -f docker-compose.test.yml up --rebuild
+```
+If you then run `run_tests_iter.sh` instead of `run_tests.sh` it will rebuild the
+Docker container every time.
