@@ -18,13 +18,16 @@ packages that enable your application to run.
 
 ## Quick start
 
-Install Docker: [create a Docker account](https://hub.docker.com/signup) then
-follow the instructions to install Docker.
+#### Install Docker
+[Create a Docker account](https://hub.docker.com/signup) then follow the
+instructions to install Docker.
 
-Install Node. (Strictly speaking, Node isn't necessary for this exercise, but
-you'll want to be able to develop Node applications outside of Docker
-containers.) If you're using OS X, you might as well get started using Homebrew
-if you haven't already:
+#### Install Node
+(Strictly speaking, Node isn't necessary for this exercise, but you'll want to
+be able to develop Node applications outside of Docker containers.)
+
+If you're using OS X, you might as well get started using Homebrew if you
+haven't already:
 ```
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 ```
@@ -35,18 +38,23 @@ brew install node
 If you're using Linux or Windows, use the [Node download
 site](https://nodejs.org/en/download/) and follow the instructions.
 
+#### Fork this repository
 If you don't have a place where you keep all your git repositories, use ~/git:
 ```
 mkdir ~/git
 ```
 
 Navigate to the directory where you'll be installing the repository and
-[fork](https://guides.github.com/activities/forking/) it. Then you can do this:
+[fork](https://guides.github.com/activities/forking/) it. 
+
+#### Start the application
+Navigate to the forked repository and run `docker-compose` to start the
+application:
 ```
 cd ~/git/timezones
 docker-compose up -d
 ```
-That should start the application. Open a browser, then enter this URL:
+Open a browser and enter this URL:
 ```
 http://localhost:3000
 ```
@@ -54,8 +62,10 @@ You should see this:
 ```
 Hello, World!
 ```
-If you see that, congratulations! Your application works. Run this command to
-stop the application (from the application directory):
+If you see that, congratulations! Your application works.
+
+#### Stop the application
+Run this command to stop the application (from the application directory):
 ```
 docker-compose down
 ```
