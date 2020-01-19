@@ -240,7 +240,7 @@ specified in the application's Dockerfile. Re-run the test script, and you
 should see your changes applied.
 
 Another way is simpler and faster, but requires Node to be installed on your
-machine, and may not follow the same paths: from your application directory, run
+machine, and may not follow the same paths. From your application directory, run
 the command:
 ```
 npm test
