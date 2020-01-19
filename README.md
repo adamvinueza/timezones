@@ -82,7 +82,7 @@ If you're using a Windows machine, run:
 ./run_tests.bat
 ```
 That command should run the unit tests already written and built into the
-application's `package.json` file. You should see output like this:
+application's `package.json` file. You should see output similar to this:
 ```
 Creating timezones_timezones_1 ... done
 Attaching to timezones_timezones_1
@@ -105,7 +105,7 @@ timezones_1  |   1 failing
 timezones_1  |
 timezones_1  |   1) GET /local-time
 timezones_1  |        Should get the local time in UTC:
-timezones_1  |      Uncaught AssertionError: expected time difference < 1 second, found -0.008: expected -0.008 to be within 0..1
+timezones_1  |      Uncaught AssertionError: expected -0.016 to be within 0..1
 timezones_1  |       at /usr/src/app/test/localTimeTest.js:23:24
 timezones_1  |       at Test.Request.callback (node_modules/superagent/lib/node/index.js:716:12)
 timezones_1  |       at IncomingMessage.<anonymous> (node_modules/superagent/lib/node/index.js:916:18)
@@ -164,17 +164,27 @@ PARAMETERS:
 ```
 
 The application source code contains `localTime` and `convertTime` directories,
-whose files handle the routes documented above. The `/local-time` endpoint is
-handled correctly, and has tests written. You should examine the files in the
-`localTime` directory, and the tests in the `test` directory, as a guide to
-fixing the code in the `convertTime` directory. (First, though, fix the failing
-test in `localTimeTest.js`.) Try to follow the RGR procedure to get the tests to
-pass and clean up your code.  Write each test _first_; it will of course fail
-given the function as written.
+whose files handle the routes documented above.
 
-Pay attention to how the files in `localTime` are organized and consider why
-they have been written in that way. Contrast them to the file in `convertTime`.
-Is it easier or harder to write tests for one or the other case? Why?
+The `/local-time` endpoint is handled correctly, except for one failing test.
+You should verify that the test is written correctly-. If it is, fix the code;
+if it isn't, fix thetest.
+
+Next, examine the files in the `localTime` directory, and the tests in the
+`test` directory, as a guide to fixing the code in the `convertTime` directory.
+Try to follow the RGR procedure to write tests like those in
+`localTimeTests.js`, then get the tests to pass and clean up your code. You
+should write each test _first_; it will of course fail given the function as
+written.
+
+The point of this part of the exercise is to think carefully and methodically
+about what the _intent_ of the API is, and to write tests that capture this
+intent.
+
+Once you've done that, pay attention to how the files in `localTime` are
+organized and consider why they have been written in that way. Contrast them to
+the file in `convertTime`.  Is it easier or harder to write tests for one or the
+other case? Why?
 
 ## TDD guidelines
 

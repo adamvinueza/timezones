@@ -20,8 +20,7 @@ describe(`GET ${endpoint}`, () => {
         // We expect the difference between the current time and the time taken
         // when the test started to be less than a second.
         const diff = moment.duration(actual.diff(expected)).as('seconds')
-        diff.should.be.within(0, 1,
-          `expected time difference < 1 second, found ${diff}`)
+        diff.should.be.within(0, 1)
         done();
       });
   });
@@ -54,7 +53,7 @@ describe(`GET ${endpoint}`, () => {
       });
   });
 
-  it('Should return an error message for an invalid time zone name', done => {
+  it('Should return an error message when time zone name is invalid', done => {
     const badTimezone = 'foo';
     const expected = validator.getErrorMessage(badTimezone);
     chai.request(server)
