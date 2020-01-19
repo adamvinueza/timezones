@@ -167,7 +167,7 @@ The application source code contains `localTime` and `convertTime` directories,
 whose files handle the routes documented above.
 
 The `/local-time` endpoint is handled correctly, except for one failing test.
-You should verify that the test is written correctly-. If it is, fix the code;
+You should verify that the test is written correctly. If it is, fix the code;
 if it isn't, fix thetest.
 
 Next, examine the files in the `localTime` directory, and the tests in the
