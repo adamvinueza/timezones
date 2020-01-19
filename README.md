@@ -69,6 +69,42 @@ Run this command to stop the application (from the application directory):
 ```
 docker-compose down
 ```
+#### Run the unit tests
+If you've run the application, you know it runs. But does it work properly?
+Let's check by running the existing tests. The application directory contains a
+bash script (or Windows .bat file) that runs the tests. If you're using bash,
+run:
+```
+./run_tests.sh
+```
+If you're using a Windows machine, run:
+```
+./run_tests.bat
+```
+That command should run the unit tests already written and built into the
+application's `package.json` file. You should see output like this:
+```
+timezones_1  |
+timezones_1  | > timezones@1.0.0 test /usr/src/app
+timezones_1  | > mocha --timeout 10000
+timezones_1  |
+timezones_1  |
+timezones_1  |
+timezones_1  | Listening at http://localhost:3000
+timezones_1  |   GET /local-time
+timezones_1  |     ✓ Should get the local time in UTC (54ms)
+timezones_1  |     ✓ Should get the local time in Los Angeles
+timezones_1  |     ✓ Should get the local time in New York
+timezones_1  |     ✓ Should return an error message for an invalid time zone
+timezones_1  |
+timezones_1  |
+timezones_1  |   4 passing (126ms)
+timezones_1  |
+timezones_timezones_1 exited with code 0
+Removing timezones_timezones_1 ... done
+Removing network timezones_default
+```
+
 # The task
 
 The timezones application exposes the following two REST endpoints:
