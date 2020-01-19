@@ -201,3 +201,74 @@ A test should have the general GIVEN-WHEN-THEN form. For example: **GIVEN** the
 user wants the current time in a specific time zone, **WHEN** it is January 1,
 2020, 8 a.m. in Denver and localTime is called with the string "America/Denver",
 localTime **SHOULD** return "2019-01-01T01:00:00-07:00".
+
+## Iterating with Docker
+
+When you build a Docker container, it exists independently of the code on your
+machine, because you've copied the code onto the container. To verify that, run
+the test script once (which will build a container if it hasn't been built
+already), then make a change to the code that changes a test result (e.g.,
+comment out a test). Run the test script again, and you'll see that nothing has
+changed, because `docker-compose` doesn't rebuild containers by default.
+
+There are several ways around this issue. The first is to find and delete the
+Docker container, then re-run the script:
+```
+docker image rm timezones_timezones:latest
+./run_tests.sh
+```
+But this can get tiresome. Is there a way to get your changes onto a container
+that's already been built? As it happens, there is, by using the `volumes`
+element in the `docker-compose` file. Open `docker-compose.test.yml` and you'll
+see this:
+```
+version: '3'
+services:
+  timezones:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: npm test
+```
+Add the following lines to the file, between the `build` and `command` sections:
+```
+    volumes:
+       - .:/usr/src/app
+```
+This will mount your application source code to its corresponding location
+specified in the application's Dockerfile. Re-run the test script, and you
+should see your changes applied.
+
+Another way is simpler and faster, but requires Node to be installed on your
+machine, and may not follow the same paths: from your application directory, run
+the command:
+```
+npm test
+```
+This will run the tests specified in the `package.json` file. If you look there,
+you'll see this section:
+```
+  "scripts": {
+    "test": "mocha --timeout 10000",
+    "start": "node server.js"
+  },
+```
+The `"test"` key says that if you run the `npm` command with the `test`
+parameter, the command `mocha --timeout 10000` will be run.
+
+What this means, of course, is that this project uses the [mocha test
+framework](https://mochajs.org/) for its testing. (As it happens, it also uses
+[chai](https://www.chaijs.com/)--which works with mocha--and
+[chai-http](https://www.chaijs.com/plugins/chai-http/) for mocking HTTP
+requests.)
+
+There's nothing wrong with just running the tests on your machine, outside any
+containers--you don't have to _always_ use Docker for development. And for a
+good amount of development it's easy and fast. But keep in mind that whether the
+tests pass on your machine, using your version of Node and your versions of the
+`npm` packages, **is not the final word** on whether the application works as it
+should. The only thing that matters, in the end, is whether **the application
+works as it should when run in the Docker container**. So it's usually worth
+waiting an extra few seconds per iteration to wait for the Docker container to
+spin up, especially now that you know how to mount your application directory
+directly inside it.
