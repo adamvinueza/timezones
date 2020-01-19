@@ -84,6 +84,8 @@ If you're using a Windows machine, run:
 That command should run the unit tests already written and built into the
 application's `package.json` file. You should see output like this:
 ```
+Creating timezones_timezones_1 ... done
+Attaching to timezones_timezones_1
 timezones_1  |
 timezones_1  | > timezones@1.0.0 test /usr/src/app
 timezones_1  | > mocha --timeout 10000
@@ -92,18 +94,33 @@ timezones_1  |
 timezones_1  |
 timezones_1  | Listening at http://localhost:3000
 timezones_1  |   GET /local-time
-timezones_1  |     ✓ Should get the local time in UTC (54ms)
+timezones_1  |     1) Should get the local time in UTC
 timezones_1  |     ✓ Should get the local time in Los Angeles
 timezones_1  |     ✓ Should get the local time in New York
-timezones_1  |     ✓ Should return an error message for an invalid time zone
+timezones_1  |     ✓ Should return an error message for an invalid time zone name
 timezones_1  |
 timezones_1  |
-timezones_1  |   4 passing (126ms)
+timezones_1  |   3 passing (139ms)
+timezones_1  |   1 failing
 timezones_1  |
-timezones_timezones_1 exited with code 0
+timezones_1  |   1) GET /local-time
+timezones_1  |        Should get the local time in UTC:
+timezones_1  |      Uncaught AssertionError: expected time difference < 1 second, found -0.008: expected -0.008 to be within 0..1
+timezones_1  |       at /usr/src/app/test/localTimeTest.js:23:24
+timezones_1  |       at Test.Request.callback (node_modules/superagent/lib/node/index.js:716:12)
+timezones_1  |       at IncomingMessage.<anonymous> (node_modules/superagent/lib/node/index.js:916:18)
+timezones_1  |       at endReadableNT (_stream_readable.js:1215:12)
+timezones_1  |       at processTicksAndRejections (internal/process/task_queues.js:84:21)
+timezones_1  |
+timezones_1  |
+timezones_1  |
+timezones_1  | npm ERR! Test failed.  See above for more details.
+timezones_timezones_1 exited with code 1
 Removing timezones_timezones_1 ... done
 Removing network timezones_default
 ```
+This suggests that one of the tests is failing, so the application clearly does
+NOT work properly.
 
 # The task
 
@@ -132,7 +149,7 @@ GET /convert-time
 
 http://localhost:3000/convert-time?time=ISO_8601_TIME&tz=TZ_NAME
 
-  Gets the specified ISO 8601 formatted datetime string and returns an ISO- 8601
+  Gets the specified ISO 8601 formatted datetime string and returns an ISO 8601
   formatted string representing that time in the specified time zone.  The time
   zone name must be a valid TZ database name, as defined by IANA
   (https://www.iana.org/time-zones).  If no time is provided, the current time
@@ -150,9 +167,10 @@ The application source code contains `localTime` and `convertTime` directories,
 whose files handle the routes documented above. The `/local-time` endpoint is
 handled correctly, and has tests written. You should examine the files in the
 `localTime` directory, and the tests in the `test` directory, as a guide to
-fixing the code in the `convertTime` directory. Try to follow the RGR procedure
-to get the tests to pass and clean up your code.  Write each test _first_; it
-will of course fail given the function as written.
+fixing the code in the `convertTime` directory. (First, though, fix the failing
+test in `localTimeTest.js`.) Try to follow the RGR procedure to get the tests to
+pass and clean up your code.  Write each test _first_; it will of course fail
+given the function as written.
 
 Pay attention to how the files in `localTime` are organized and consider why
 they have been written in that way. Contrast them to the file in `convertTime`.

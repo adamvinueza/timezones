@@ -11,13 +11,17 @@ const endpoint = '/local-time';
 
 describe(`GET ${endpoint}`, () => {
   it('Should get the local time in UTC', done => {
-    const expected = moment().utc().format();
+    const expected = moment().utc();
     chai.request(server)
       .get(endpoint)
       .end((err, res) => {
         res.should.have.status(200);
-        const actual = res.text;
-        expected.should.equal(actual)
+        const actual = new moment(res.text);
+        // We expect the difference between the current time and the time taken
+        // when the test started to be less than a second.
+        const diff = moment.duration(actual.diff(expected)).as('seconds')
+        diff.should.be.within(0, 1,
+          `expected time difference < 1 second, found ${diff}`)
         done();
       });
   });
