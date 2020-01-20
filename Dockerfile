@@ -13,6 +13,3 @@ COPY . .
 
 # The app runs off port 3000, so open it
 EXPOSE 3000
-
-# OK, we can start the app now
-CMD [ "node", "server.js" ]
