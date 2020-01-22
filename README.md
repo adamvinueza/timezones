@@ -2,6 +2,19 @@
 
 A simple REST API for managing dates and times with time zones.
 
+Contents
+
+[Introduction](#introduction)
+[Quick Start](#quick-start)
+  - [Install Docker](#install-docker)
+  - [Install Node](#install-node)
+  - [Fork this Repository](#fork-this-repository)
+  - [Start the Application](#start-the-application)
+  - [Stop the Application](#stop-the-application)
+  - [Run the Unit Tests](#run-the-unit-tests)
+
+## Introduction
+
 This app is an exercise for practicing the red-green-refactor pattern in
 test-driven development (TDD). It will also give you practice in a number of
 widely-used technologies, such as Node, Express, and Docker.
