@@ -5,6 +5,7 @@ A simple REST API for managing dates and times with time zones.
 Contents
 
 [Introduction](#introduction)
+
 [Quick Start](#quick-start)
   - [Install Docker](#install-docker)
   - [Install Node](#install-node)
@@ -12,6 +13,12 @@ Contents
   - [Start the Application](#start-the-application)
   - [Stop the Application](#stop-the-application)
   - [Run the Unit Tests](#run-the-unit-tests)
+
+[The Task](#the-task)
+
+[TDD Guidelines](#tdd-guidelines)
+
+[Iterating with Docker](#iterating-with-docker)
 
 ## Introduction
 
@@ -135,7 +142,7 @@ Removing network timezones_default
 This suggests that one of the tests is failing, so the application clearly does
 NOT work properly.
 
-# The task
+## The task
 
 The timezones application exposes the following two REST endpoints:
 ```
