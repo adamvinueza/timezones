@@ -4,21 +4,17 @@ A simple REST API for managing dates and times with time zones.
 
 Contents
 
-[Introduction](#introduction)
-
-[Quick Start](#quick-start)
+- [Introduction](#introduction)
+- [Quick Start](#quick-start)
   - [Install Docker](#install-docker)
   - [Install Node](#install-node)
   - [Fork this Repository](#fork-this-repository)
   - [Start the Application](#start-the-application)
   - [Stop the Application](#stop-the-application)
   - [Run the Unit Tests](#run-the-unit-tests)
-
-[The Task](#the-task)
-
-[TDD Guidelines](#tdd-guidelines)
-
-[Iterating with Docker](#iterating-with-docker)
+- [The Task](#the-task)
+- [TDD Guidelines](#tdd-guidelines)
+- [Iterating with Docker](#iterating-with-docker)
 
 ## Introduction
 
