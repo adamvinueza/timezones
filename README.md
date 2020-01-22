@@ -25,6 +25,9 @@ widely-used technologies, such as Node, Express, and Docker.
 You will need to install [Docker](https://hub.docker.com/?overlay=onboarding) so
 that you can run Docker tools on your machine.
 
+(For a super-quick introduction to Docker, read [Docker in 15
+minutes](https://adamvinueza.github.io/docker/learning/2020/01/10/docker-in-fifteen.html).)
+
 Also, you should download and install a relatively recent version of
 [NodeJS](https://nodejs.org/en/download/). This way it'll be easier to diagnose
 and debug issues independently of Docker.
