@@ -155,8 +155,16 @@ chai.request(server)
     testResponse(res);
   });
 ```
+We want to _handle_ the error, generally speaking. Some of our tests may expect
+the code to result in an error!
 
-If we run this test, we'll see that it fails:
+Also, we want to make sure the response is appropriate. A request may not cause
+the server to throw an exception, but still be invalid--for example, if the
+caller was not authenticated, or if the input parameters were invalid. In those
+cases we might want the response to have a different HTTP status code (e.g., 401
+for being unauthorized, or 400 for submitting a bad request).
+
+OK, that's enough about scaffolding. If we run this test, we see that it fails:
 ```shell
 > ./run_tests.sh
 Creating network "timezones_default" with the default driver
