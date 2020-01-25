@@ -107,7 +107,7 @@ describes a piece of functionality, and each `it` function exercises the thing
 you're testing to see if it behaves in a way it specifies. To understand this
 better, let's look at `localTimeTest.js` (note the text below includes line
 numbers):
-```
+```javascript
  1 const chai = require('chai');
  2 const chaiHttp = require('chai-http');
  3 const moment = require('moment-timezone');
@@ -137,7 +137,7 @@ test simply uses the moment library to parse the string, treating it as if it
 were an ISO 8601 string. If the object returned is valid, the test passes.
 
 If we run this test, we'll see that it fails:
-```
+```shell
 > ./run_tests.sh
 Creating network "timezones_default" with the default driver
 Creating timezones_timezones_1 ... done
@@ -179,7 +179,7 @@ Removing timezones_timezones_1 ... done
 Removing network timezones_default
 ```
 The key part of this output are these lines:
-```
+```shell
 timezones_1  |       Uncaught AssertionError: expected false to equal true
 timezones_1  |       + expected - actual
 timezones_1  |
@@ -191,7 +191,7 @@ timezones_1  |       at /usr/src/app/test/localTimeTest.js:18:33
 What does this mean? On line 18 is the chai assertion that the result of the
 call on `actual.isValid()` is true. The `actual` object is the result of this
 call on line 17:
-```
+```javascript
 16       const actual = new moment(res.text, moment.ISO_8601, PARSE_STRICT);
 ```
 This call attempts to construct a `moment` object from the response text, with
@@ -201,7 +201,7 @@ objects have an `isValid` method](https://momentjs.com/docs/#/parsing/string/)
 to indicate whether they are, in fact, valid. So let's look at what the
 `/local-time` endpoint actually returns. We can see that in `localTime.js`. Here
 is the entirety of that file:
-```
+```javascript
 const moment = require('moment-timezone');
 
 // Returns the local time as an ISO 8601 string in the specified time zone.
@@ -214,7 +214,7 @@ That is, the `localTime` function returns the empty string! And clearly the
 empty string is not a valid ISO 8601 string.
 
 How do we make this test pass? Well, let's try returning a date string:
-```
+```javascript
 const localTime = async tzName => {
   // format() returns a string version of the created moment, which by default
   // is in ISO 8601 format
@@ -223,7 +223,7 @@ const localTime = async tzName => {
 module.exports = localTime;
 ```
 Now, if we run our test, it passes:
-```
+```shell
 Creating network "timezones_default" with the default driver
 Creating timezones_timezones_1 ... done
 Attaching to timezones_timezones_1
