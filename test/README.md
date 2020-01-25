@@ -113,28 +113,48 @@ numbers):
  3 const moment = require('moment-timezone');
  4 const server = require('../server');
  5 const should = chai.should();
- 6 chai.use(chaiHttp);
- 7
- 8 const PARSE_STRICT = true; // always be strict when parsing date strings
- 9 const endpoint = '/local-time'
-10
-11 describe(`GET /local-time`, () => {
-12   it('Should get an ISO 8601 date string', done => {
-13    chai.request(server)
-14      .get(endpoint)
-15      .end((err, res) => {
-16       res.should.have.status(200);
-17       const actual = new moment(res.text, moment.ISO_8601, PARSE_STRICT);
-18       actual.isValid().should.equal(true);
-19       done();
-20     });
-21   });
-22 });
+ 6 const expect = chai.expect;
+ 7 chai.use(chaiHttp);
+ 8
+ 9 const PARSE_STRICT = true; // always be strict when parsing date strings
+10 const endpoint = '/local-time'
+11
+12 describe(`GET /local-time`, () => {
+13   it('Should get an ISO 8601 date string', done => {
+14     chai.request(server)
+15       .get(endpoint)
+16       .end((err, res) => {
+17         expect(err).to.be.null;
+18         res.should.have.status(200);
+19         const actual = new moment(res.text, moment.ISO_8601, PARSE_STRICT);
+20         actual.isValid().should.equal(true);
+21         done();
+22       });
+23   });
+24 });
 ```
 This test describes how the `/local-time` endpoint is supposed to behave. The
 `it` function says that it should return a string in ISO 8601 format, and the
 test simply uses the moment library to parse the string, treating it as if it
 were an ISO 8601 string. If the object returned is valid, the test passes.
+
+There's a lot going on in this test, but most of it is just scaffolding. We're
+making a GET request against the server using the `chai-http` library, then
+calling `end()`, which takes a function to execute when the request is handled.
+That function checks the response to ensure it came back with the right HTTP
+status code, and that it contains the right content.
+
+You don't have to understand all the details of this. What matters is that you
+can reproduce code like this to create your own tests. You should have this
+template in mind:
+```javascript
+chai.request(server)
+  .{HTTP_METHOD}
+  .end((err, res) => {
+    handleError(err);
+    testResponse(res);
+  });
+```
 
 If we run this test, we'll see that it fails:
 ```
@@ -165,7 +185,7 @@ timezones_1  |
 timezones_1  |       -false
 timezones_1  |       +true
 timezones_1  |
-timezones_1  |       at /usr/src/app/test/localTimeTest.js:18:33
+timezones_1  |       at /usr/src/app/test/localTimeTest.js:20:33
 timezones_1  |       at Test.Request.callback (node_modules/superagent/lib/node/index.js:716:12)
 timezones_1  |       at IncomingMessage.<anonymous> (node_modules/superagent/lib/node/index.js:916:18)
 timezones_1  |       at endReadableNT (_stream_readable.js:1215:12)
@@ -186,7 +206,7 @@ timezones_1  |
 timezones_1  |       -false
 timezones_1  |       +true
 timezones_1  |
-timezones_1  |       at /usr/src/app/test/localTimeTest.js:18:33
+timezones_1  |       at /usr/src/app/test/localTimeTest.js:20:33
 ```
 What does this mean? On line 18 is the chai assertion that the result of the
 call on `actual.isValid()` is true. The `actual` object is the result of this

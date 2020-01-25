@@ -3,6 +3,7 @@ const chaiHttp = require('chai-http');
 const moment = require('moment-timezone');
 const server = require('../server');
 const should = chai.should();
+const expect = chai.expect;
 chai.use(chaiHttp);
 
 const PARSE_STRICT = true; // always be strict when parsing date strings
@@ -13,6 +14,7 @@ describe(`GET ${endpoint}`, () => {
     chai.request(server)
       .get(endpoint)
       .end((err, res) => {
+        expect(err).to.be.null;
         res.should.have.status(200);
         const actual = new moment(res.text, moment.ISO_8601, PARSE_STRICT);
         actual.isValid().should.equal(true);
