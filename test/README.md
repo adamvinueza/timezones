@@ -276,3 +276,28 @@ Congratulations, you got your first test to pass!
 
 Run `git commit -am 'got my first test to pass, hooray!' && git push` to
 celebrate.
+
+## Handling queries: time-zone-name validation
+
+We have one passing test. Let's see if we can flesh out our `/local-time`
+endpoint. When we call with a valid time zone name, such as
+"America/Los_Angeles", we want to get back the current time, localized to that
+time zone (otherwise known as Pacific Time). And we want some way of telling the
+user that a time zone name is _not_ valid: the only acceptable time-zone names
+are those from the [TZ database](https://www.iana.org/time-zones). So if someone
+submits a request with a name that's not from that database, such as
+"Pacific-Time" or "GMT" or "dog", we want to say that the request is bad and
+provide an appropriate error message.
+
+So let's write some tests to verify the following:
+
+1. A request with no query string returns the local UTC time.
+2. A request with "America/Los_Angeles" as the query returns the time in Los
+   Angeles.
+3. A request with "America/Chicago" as the query returns the time in Chicago.
+4. A request with "Europe/Basel" as the query returns the time in Basel,
+   Switzerland.
+5. A request with "dog" as the query returns a 400 response, with the error
+   message "'dog' is not a valid TZ database name".
+
+
