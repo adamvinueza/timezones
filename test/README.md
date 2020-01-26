@@ -301,6 +301,6 @@ So let's write some tests to verify the following:
 5. A request with the query "Europe/Brussels" returns the time in Brussels,
    Belgium (UTC +1h).
 6. A request with the query "dog" returns a 400 response, with the error
-   message "'dog' is not a valid TZ database name".
+   message "Invalid time zone: 'dog'".
 
 
