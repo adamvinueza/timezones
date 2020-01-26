@@ -292,12 +292,15 @@ provide an appropriate error message.
 So let's write some tests to verify the following:
 
 1. A request with no query string returns the local UTC time.
-2. A request with "America/Los_Angeles" as the query returns the time in Los
-   Angeles.
-3. A request with "America/Chicago" as the query returns the time in Chicago.
-4. A request with "Europe/Basel" as the query returns the time in Basel,
-   Switzerland.
-5. A request with "dog" as the query returns a 400 response, with the error
+2. A request with the query "America/Los_Angeles" returns the time in Los
+   Angeles (UTC -8h).
+3. A request with the query "America/Denver" returns the time in Denver (UTC
+   -8h).
+4. A request with the query "America/Chicago" returns the time in Chicago
+   (UTC -6h).
+5. A request with the query "Europe/Brussels" returns the time in Brussels,
+   Belgium (UTC +1h).
+6. A request with the query "dog" returns a 400 response, with the error
    message "'dog' is not a valid TZ database name".
 
 
