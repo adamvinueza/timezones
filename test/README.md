@@ -295,7 +295,7 @@ So let's write some tests to verify the following:
 2. A request with the query "America/Los_Angeles" returns the time in Los
    Angeles (UTC -8h).
 3. A request with the query "America/Denver" returns the time in Denver (UTC
-   -8h).
+   -7h).
 4. A request with the query "America/Chicago" returns the time in Chicago
    (UTC -6h).
 5. A request with the query "Europe/Brussels" returns the time in Brussels,
