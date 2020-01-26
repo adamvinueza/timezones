@@ -277,7 +277,7 @@ Congratulations, you got your first test to pass!
 Run `git commit -am 'got my first test to pass, hooray!' && git push` to
 celebrate.
 
-## Handling queries: time-zone-name validation
+## Handling queries and validating time-zone names
 
 We have one passing test. Let's see if we can flesh out our `/local-time`
 endpoint. When we call with a valid time zone name, such as
